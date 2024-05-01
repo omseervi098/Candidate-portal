@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Autocomplete } from "@mui/material";
 import TextField from "@mui/material/TextField";
-
 import styles from "./filterBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -12,6 +11,7 @@ import {
   setNoOfEmployees,
   setSalary,
 } from "../../actions/actionTypes";
+// Data for the filter options
 const roleOptions = [
   "frontend",
   "backend",

@@ -1,4 +1,3 @@
-// actions.js
 import axios from "axios";
 import {
   fetchJobs,
@@ -7,12 +6,6 @@ import {
   loadMoreJobsError,
   fetchJobsLoading,
   loadMoreJobsLoading,
-  setExperience,
-  setRole,
-  setLocation,
-  setSalary,
-  setCompany,
-  setNoOfEmployees,
 } from "./actionTypes";
 export const fetchJobsAPI = () => {
   return async (dispatch) => {
@@ -26,7 +19,6 @@ export const fetchJobsAPI = () => {
           offset: 0,
         }
       );
-      console.log("Initial Fetch", resp.data.jdList);
       dispatch(fetchJobs(resp.data.jdList));
     } catch (error) {
       console.log(error);
@@ -38,6 +30,7 @@ export const loadMoreJobsAPI = (offset) => {
   return async (dispatch) => {
     dispatch(loadMoreJobsLoading());
     try {
+      // load next 9 jobs
       console.log("offset", offset);
       const resp = await axios.post(
         "https://api.weekday.technology/adhoc/getSampleJdJSON",
@@ -47,7 +40,6 @@ export const loadMoreJobsAPI = (offset) => {
         }
       );
       const data = resp.data.jdList;
-      console.log("load more", data);
       dispatch(loadMoreJobs(data));
     } catch (error) {
       console.log(error);

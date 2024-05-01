@@ -4,11 +4,7 @@ import { Grid } from "@material-ui/core";
 import JobCard from "./component/jobCard/jobCard";
 import FilterBar from "./component/filterBar/filterBar";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  fetchJobsAPI,
-  loadMoreJobsAPI,
-  filterExperienceAPI,
-} from "./actions/action";
+import { fetchJobsAPI, loadMoreJobsAPI } from "./actions/action";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 export default function App() {
@@ -22,73 +18,65 @@ export default function App() {
     selectedRole,
     selectedSalary,
     selectedCompany,
-    selectedNoOfEmployees,
   } = useSelector((state) => state);
-
+  // Fetch initial jobs
   React.useEffect(() => {
     dispatch(fetchJobsAPI());
   }, [dispatch]);
-
+  // Fetch more jobs on scroll
   const handleScroll = useCallback(() => {
     if (
       Math.ceil(window.innerHeight + document.documentElement.scrollTop) ===
       document.documentElement.offsetHeight
     ) {
-      console.log("fetch more jobs");
       dispatch(loadMoreJobsAPI(jobs.length));
     }
   }, [dispatch, jobs.length]);
+  // Add scroll event listener
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
+  // Filter jobs based on selected filters
   const filteredJobs = jobs.filter((job) => {
     if (selectedExperience && job.minExp <= selectedExperience) {
       return false;
     }
-    if (selectedLocation) {
-      if (selectedLocation.toLowerCase() === "remote") {
-        if (job.location !== "remote") {
-          return false;
-        } else {
-          return true;
-        }
-      } else {
-        if (job.location === "remote") {
-          return false;
-        } else {
-          return true;
-        }
+    if (
+      (selectedLocation &&
+        selectedLocation === "Remote" &&
+        job.location !== "remote") ||
+      (selectedLocation !== "Remote" && job.location == "remote")
+    ) {
+      return false;
+    }
+    if (
+      selectedRole &&
+      !job.jobRole.toLowerCase().includes(selectedRole.toLowerCase())
+    ) {
+      return false;
+    }
+    if (selectedCompany) {
+      if (
+        !job.companyName.toLowerCase().includes(selectedCompany.toLowerCase())
+      ) {
+        return false;
       }
     }
     if (selectedSalary) {
-      job.minJdSalary = job.minJdSalary
+      const jobSalaryInLakhs = job.minJdSalary
         ? job.minJdSalary
         : job.maxJdSalary
         ? job.maxJdSalary
         : 0;
       const selectedSalaryInLakhs = parseInt(selectedSalary.split("L")[0]);
-      console.log(selectedSalaryInLakhs, job.minJdSalary);
-      if (job.minJdSalary < selectedSalaryInLakhs) {
+      if (jobSalaryInLakhs <= selectedSalaryInLakhs) {
         return false;
-      }
-    }
-    if (selectedRole) {
-      if (job.jobRole.toLowerCase().includes(selectedRole.toLowerCase())) {
-        return true;
       } else {
-        return false;
-      }
-    }
-    if (selectedCompany) {
-      if (
-        job.companyName.toLowerCase().includes(selectedCompany.toLowerCase())
-      ) {
         return true;
-      } else {
-        return false;
       }
     }
+
     return true;
   });
   return (
