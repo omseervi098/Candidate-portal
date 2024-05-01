@@ -46,7 +46,9 @@ export default function App() {
       (selectedLocation &&
         selectedLocation === "Remote" &&
         job.location !== "remote") ||
-      (selectedLocation !== "Remote" && job.location == "remote")
+      (selectedLocation != null &&
+        selectedLocation !== "Remote" &&
+        job.location == "remote")
     ) {
       return false;
     }
