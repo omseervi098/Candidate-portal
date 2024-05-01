@@ -7,3 +7,6 @@
 * ```npm i --force```
 * ```npm start``` for running in dev
 * ```npm build``` for running in production or building 
+## Features
+* Infinite Scroll ( load data while scrolling )
+* Filtering Options ( ExperienceLevel, Salary, Location, ...}
