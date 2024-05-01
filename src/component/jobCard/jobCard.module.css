@@ -1,0 +1,118 @@
+.card{
+    border-radius: 20px !important;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px 0px #00000046 !important;
+}
+.date{
+    border: 2px solid #777777;
+    border-radius: 20px;
+    max-width: fit-content;
+    padding: 2px 5px;
+    color: var(--secondary-heading-color);
+    font-size: var(--tertiary-font-size);
+}
+.companycontanier{
+    display: flex;
+    gap:5px;   
+    height: 100%;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.companylogo{
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 50px;
+    overflow: hidden;
+}
+.companylogo > img{
+   width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.companydetail{
+    display: flex;
+    flex-direction: column;
+    gap:2px;
+}
+.companyname{
+    color: var(--secondary-heading-color);
+    font-size: var(--secondary-font-size);
+}
+.rolename{
+    color: var(--heading-color);
+    font-size: var(--primary-font-size);
+    text-transform: capitalize;
+}
+.location{
+    font-size: var(--secondary-font-size);
+    text-transform: capitalize;
+}
+.salary{
+    margin-top: 10px;
+    color: var(--tertiary-heading-color);
+    font-size: var(--secondary-font-size);
+}
+.about{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    overflow: hidden;
+    position: relative;
+}
+.viewjob{
+  position:absolute;
+    bottom: 0px;
+    display: flex;
+    width: 100%;
+    height: 40px;
+    align-items: end;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255,255,255,1) 100%);
+    font-size: var(--secondary-font-size);
+    font-weight: 600;
+    color:rgb(54, 54, 177);
+    cursor: pointer;
+}
+.aboutheading{
+    color: var(--heading-color);
+    font-size: var(--primary-font-size);
+    font-weight: 500;
+    margin: 0px;
+    margin-top: 10px;
+}
+.aboutsubhead{
+    color:var(--heading-color);
+    font-size: var(--secondary-font-size);
+    font-weight: 600;
+}
+.aboutcontent{
+    font-weight: 400;
+    font-size: var(--secondary-font-size) !important;
+}
+.experiencecontainer{
+    color: var(--secondary-heading-color);
+    font-size: var(--secondary-font-size);
+    font-weight: 600;
+    margin-top: 20px;
+}
+.experience{
+    color: var(--heading-color);
+    font-weight: 500;
+}
+.btn1{
+    background-color: #55efc4;
+    color: var(--heading-color);
+    font-size: var(--primary-font-size);
+    font-weight: 600;
+    padding: 8px 0px;
+    border-radius: 10px;
+    border: none;
+    width: 90%;
+    cursor: pointer;
+    margin-bottom: 5px;
+    /* margin-top: 10px; */
+}
